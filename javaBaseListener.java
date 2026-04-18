@@ -63,6 +63,18 @@ public class javaBaseListener implements javaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTipoMetodo(javaParser.TipoMetodoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTipoMetodo(javaParser.TipoMetodoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariavel(javaParser.VariavelContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -70,6 +82,18 @@ public class javaBaseListener implements javaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariavel(javaParser.VariavelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracaoVariavel(javaParser.DeclaracaoVariavelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracaoVariavel(javaParser.DeclaracaoVariavelContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -118,6 +142,18 @@ public class javaBaseListener implements javaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInstrucao(javaParser.InstrucaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintInstrucao(javaParser.PrintInstrucaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintInstrucao(javaParser.PrintInstrucaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,3 @@
-
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import java.nio.file.Files;
@@ -8,11 +7,10 @@ import java.util.*;
 import java.util.regex.*;
 import java.util.*;
 import java.util.regex.*;
-
 public class Main {
     public static void main(String[] args) throws Exception {
 
-         if (args.length == 0) {
+        if (args.length == 0) {
             System.out.println("Uso: java  <ficheiro.cs>");
             return;
         }
@@ -23,14 +21,13 @@ public class Main {
               System.out.println("error\n");
         }
         CharStream input = CharStreams.fromString(code);
-
-        BasicLexer lexer = new BasicLexer(input);
+        javaLexer lexer = new javaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        BasicParser parser = new BasicParser(tokens);
+        javaParser parser = new javaParser(tokens);
 
         ParseTree tree = parser.program();
 
-        BasicInterpreter interpreter = new BasicInterpreter();
-        interpreter.visit(tree);
+        EvalVisitor visitor = new EvalVisitor();
+        visitor.visit(tree);
     }
 }

@@ -11,14 +11,26 @@ membroClasse
     | variavel
     ;
 
+// método (inclui void)
 metodo
-    : tipo ID '(' parametroLista? ')' bloco
+    : tipoMetodo ID '(' parametroLista? ')' bloco
     ;
 
+tipoMetodo
+    : tipo
+    | 'void'
+    ;
+
+// variáveis (suporta múltiplas)
 variavel
-    : tipo ID ('=' expressao)? ';'
+    : tipo declaracaoVariavel (',' declaracaoVariavel)* ';'
     ;
 
+declaracaoVariavel
+    : ID ('=' expressao)?
+    ;
+
+// parâmetros
 parametroLista
     : parametro (',' parametro)*
     ;
@@ -27,6 +39,7 @@ parametro
     : tipo ID
     ;
 
+// bloco
 bloco
     : '{' instrucao* '}'
     ;
@@ -37,11 +50,17 @@ instrucao
     : variavel
     | atribuicao ';'
     | chamadaMetodo ';'
+    | printInstrucao ';'
     | retorno ';'
     | ifInstrucao
     | whileInstrucao
     | forInstrucao
     | bloco
+    ;
+
+// print built-in
+printInstrucao
+    : 'print' '(' argumentoLista? ')'
     ;
 
 // atribuição
@@ -59,9 +78,9 @@ whileInstrucao
     : 'while' '(' expressao ')' instrucao
     ;
 
-// for
+// for melhorado
 forInstrucao
-    : 'for' '(' atribuicao? ';' expressao? ';' atribuicao? ')' instrucao
+    : 'for' '(' (variavel | atribuicao)? ';' expressao? ';' atribuicao? ')' instrucao
     ;
 
 // return
@@ -74,57 +93,52 @@ chamadaMetodo
     : ID '(' argumentoLista? ')'
     ;
 
+// argumentos
 argumentoLista
     : expressao (',' expressao)*
     ;
 
-// ---------------- EXPRESSÕES (COM PRECEDÊNCIA) ----------------
+// ---------------- EXPRESSÕES ----------------
 
-// nível mais alto
 expressao
     : expressaoLogica
     ;
 
-// || 
 expressaoLogica
     : expressaoLogica '||' expressaoAnd
     | expressaoAnd
     ;
 
-// &&
 expressaoAnd
     : expressaoAnd '&&' expressaoIgualdade
     | expressaoIgualdade
     ;
 
-// == !=
 expressaoIgualdade
     : expressaoIgualdade ('==' | '!=') expressaoRelacional
     | expressaoRelacional
     ;
 
-// < > <= >=
 expressaoRelacional
     : expressaoRelacional ('<' | '>' | '<=' | '>=') expressaoAditiva
     | expressaoAditiva
     ;
 
-// + -
 expressaoAditiva
     : expressaoAditiva ('+' | '-') expressaoMultiplicativa
     | expressaoMultiplicativa
     ;
 
-// * /
 expressaoMultiplicativa
     : expressaoMultiplicativa ('*' | '/') expressaoUnaria
     | expressaoUnaria
     ;
 
-// ! -
 expressaoUnaria
     : '!' expressaoUnaria
     | '-' expressaoUnaria
+    | '++' ID
+    | '--' ID
     | primario
     ;
 
@@ -136,6 +150,8 @@ primario
     | STRING
     | 'true'
     | 'false'
+    | 'null'
+    | 'this'
     | '(' expressao ')'
     ;
 
@@ -157,4 +173,9 @@ NUMERO : [0-9]+ ('.' [0-9]+)? ;
 
 STRING : '"' (~["\\] | '\\' .)* '"' ;
 
+// comentários
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
+
 WS : [ \t\r\n]+ -> skip ;
+

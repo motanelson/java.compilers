@@ -47,6 +47,16 @@ public interface javaListener extends ParseTreeListener {
 	 */
 	void exitMetodo(javaParser.MetodoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link javaParser#tipoMetodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterTipoMetodo(javaParser.TipoMetodoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javaParser#tipoMetodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitTipoMetodo(javaParser.TipoMetodoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link javaParser#variavel}.
 	 * @param ctx the parse tree
 	 */
@@ -56,6 +66,16 @@ public interface javaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariavel(javaParser.VariavelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link javaParser#declaracaoVariavel}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracaoVariavel(javaParser.DeclaracaoVariavelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javaParser#declaracaoVariavel}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracaoVariavel(javaParser.DeclaracaoVariavelContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link javaParser#parametroLista}.
 	 * @param ctx the parse tree
@@ -96,6 +116,16 @@ public interface javaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInstrucao(javaParser.InstrucaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link javaParser#printInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintInstrucao(javaParser.PrintInstrucaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javaParser#printInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintInstrucao(javaParser.PrintInstrucaoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link javaParser#atribuicao}.
 	 * @param ctx the parse tree
